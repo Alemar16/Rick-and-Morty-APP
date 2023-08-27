@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -50,9 +51,14 @@ const Navbar = () => {
                   Project
                 </a>
                 <div className="dropdown-menu">
-                  <a className="dropdown-item" href="#">
-                    API Information
-                  </a>
+                  <Link
+                    className="dropdown-item"
+                    to="https://rickandmortyapi.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Rick and Morty API
+                  </Link>
                   <a className="dropdown-item" href="#">
                     Henrry Module 2 Instructions
                   </a>
