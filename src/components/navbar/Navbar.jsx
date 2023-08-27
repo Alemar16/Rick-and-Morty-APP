@@ -29,12 +29,12 @@ const Navbar = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="./favorites">
                   Favorites
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="./synopsis">
                   Synopsis
                 </a>
               </li>
@@ -59,14 +59,14 @@ const Navbar = () => {
                   >
                     Rick and Morty API
                   </Link>
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item" href="./henry_m2">
                     Henrry Module 2 Instructions
                   </a>
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item" href="./tecnologies">
                     Applied technologies
                   </a>
                   <div className="dropdown-divider"></div>
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item" href="./about">
                     About
                   </a>
                 </div>
