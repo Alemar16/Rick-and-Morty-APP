@@ -1,14 +1,13 @@
 //import React from 'react'
 
-import About from "../about/About";
+import About from "../../pages/About";
 import { Navigate, Route } from "react-router-dom";
 import Navbar from "../navbar/Navbar";
-import Home from "../home/Home";
-import Favorites from "../favorites/Favorites";
-import Synopsis from "../../synopsis/Synopsis";
-import Henry_m2 from "../henry_m2/Henry_m2";
-import Tecnologies from "../tecnologies/Tecnologies";
-
+import Home from "../../pages/Home";
+import Favorites from "../../pages/Favorites";
+import Synopsis from "../../pages/Synopsis";
+import Henry_m2 from "../../pages/Henry_m2";
+import Tecnologies from "../../pages/Tecnologies";
 
 const PrivateRoutes = () => {
   return (
