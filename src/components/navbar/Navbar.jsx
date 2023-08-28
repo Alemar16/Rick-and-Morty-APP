@@ -1,5 +1,6 @@
 //import React from "react";
 import { Link } from "react-router-dom";
+import Logout from "../login/Logout";
 
 const Navbar = () => {
   return (
@@ -82,6 +83,7 @@ const Navbar = () => {
                 Search
               </button>
             </form>
+            <Logout />
           </div>
         </div>
       </nav>
