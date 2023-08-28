@@ -1,12 +1,13 @@
 //import React from 'react'
-import About from "./components/about/About";
-import { Navigate, Route } from 'react-router-dom';
-import Home from "./components/home/Home";
-import Navbar from "./components/navbar/Navbar";
-import Favorites from "./components/favorites/Favorites";
-import Synopsis from "./synopsis/Synopsis";
-import Henry_m2 from "./components/henry_m2/Henry_m2";
-import Tecnologies from "./components/tecnologies/Tecnologies";
+
+import About from "../about/About";
+import { Navigate, Route } from "react-router-dom";
+import Navbar from "../navbar/Navbar";
+import Home from "../home/Home";
+import Favorites from "../favorites/Favorites";
+import Synopsis from "../../synopsis/Synopsis";
+import Henry_m2 from "../henry_m2/Henry_m2";
+import Tecnologies from "../tecnologies/Tecnologies";
 
 
 const PrivateRoutes = () => {
@@ -22,6 +23,6 @@ const PrivateRoutes = () => {
       <Route path="*" element={<Navigate to="/" />} />
     </div>
   );
-}
+};
 
-export default PrivateRoutes
+export default PrivateRoutes;
