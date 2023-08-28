@@ -15,8 +15,9 @@ const SignUp = () => {
       // Crea una cuenta con Firebase usando el correo electrónico y la contraseña
       await createUserWithEmailAndPassword(auth, email, password);
       // Si la creación de la cuenta fue exitosa, puedes realizar alguna acción adicional o redirigir al usuario a una página específica
+      console.log("Usuario creado");
       // Redirigir al usuario a la ruta "/"
-      Navigate("/");
+      Navigate("/home");
     } catch (error) {
       // Maneja los errores de creación de cuenta, si los hay
       console.log(error);

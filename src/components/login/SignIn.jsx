@@ -17,8 +17,9 @@ const SignIn = () => {
       // Inicia sesión con Firebase usando el correo electrónico y la contraseña
       await signInWithEmailAndPassword(auth, email, password);
       // Si el inicio de sesión fue exitoso, puedes realizar alguna acción adicional o redirigir al usuario a una página específica
+      console.log("Usuario iniciado");
       // Redirigir al usuario a la ruta "/"
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       // Maneja los errores de inicio de sesión, si los hay
       console.log(error);
