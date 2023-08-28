@@ -8,16 +8,17 @@ import Henry_m2 from "./components/henry_m2/Henry_m2";
 import Tecnologies from "./components/tecnologies/Tecnologies";
 import About from "./components/about/About";
 import Error404 from "./components/error404/Error404";
+import PrivateRoutes from "./components/privateRoutes/PrivateRoutes";
 import Login from "./components/login/Login";
-import Signup from "./components/login/SignUp";
+
 
 function App() {
   return (
     <div>
-      <Navbar />
+     {/*  <Navbar /> */}
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        
         <Route path="/" element={<Home />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/synopsis" element={<Synopsis />} />
