@@ -10,14 +10,37 @@ const LandingPage = () => {
   }
   return (
     <div>
-      <h1 className='text-center text-white mt-5'>
-        RICK AND MORTY
-      </h1>
-      <div className="container mt-5 d-flex justify-content-center" >
-        <button onClick={(goLogingHandler) } className="btn btn-secondary">Login</button>
-      </div>
+      <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="#">
+            RICK AND MORTY
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarColor02"
+            aria-controls="navbarColor02"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarColor02">
+            <form className="d-flex ms-auto">
+              <button
+                onClick={goLogingHandler}
+                className="btn btn-secondary my-2 my-sm-0 "
+                type="submit"
+              >
+                Login
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
     </div>
-  )
+  );
 }
 
 export default LandingPage
