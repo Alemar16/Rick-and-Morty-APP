@@ -7,10 +7,10 @@ const Login = () => {
       <h2 className="text-center">Login</h2>
       <div className="row">
         <div className="col">
-          <SignUp />
         </div>
-        <div className="col">
           <SignIn />
+        <div className="col">
+          <SignUp />
         </div>
       </div>
     </div>
