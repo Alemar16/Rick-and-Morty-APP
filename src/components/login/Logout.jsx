@@ -1,12 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
 
+
 export const Logout = () => {
   const navigate = useNavigate();
   const { user, logout } = UserAuth();
   const cerrarSesion = async () => {
     try {
       await logout();
+      console.log ("Usuario cerrado");
       navigate("/");
     } catch (error) {
       console.log(error);
