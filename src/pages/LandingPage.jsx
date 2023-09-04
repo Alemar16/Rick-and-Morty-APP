@@ -1,18 +1,32 @@
-import React from 'react'
-import Logout from '../components/login/Logout'
-import Login from '../components/login/Login'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from "react";
+import Login from "../pages/Login";
+import image from "../assets/landindImagen.png";
+import { FaSpinner } from "react-icons/fa";
+import { useMediaQuery } from "react-responsive";
 
 const LandingPage = () => {
-  const navigate = useNavigate()
-  const goLogingHandler = () => {
-    navigate('/login')
-  }
+  const [showLogin, setShowLogin] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+
+  const handleShowLogin = () => {
+    setShowLogin(true);
+    setIsLoading(true);
+  };
+
   return (
-    <div>
+    <div
+      style={{
+        backgroundImage: `url(${image})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "100vh",
+      }}
+    >
       <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="./">
             RICK AND MORTY
           </a>
           <button
@@ -26,21 +40,38 @@ const LandingPage = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarColor02">
-            <form className="d-flex ms-auto">
-              <button
-                onClick={goLogingHandler}
-                className="btn btn-secondary my-2 my-sm-0 "
-                type="submit"
-              >
-                Login
-              </button>
-            </form>
+          <div
+            className="collapse navbar-collapse flex-grow-0"
+            id="navbarColor02"
+          >
+            <button className="btn btn-transparent d-flex justify-content-center">
+              Instructions
+            </button>
+            <button
+              onClick={handleShowLogin}
+              className="btn btn-secondary d-flex justify-content-center"
+              disabled={isLoading}
+            >
+              {isLoading ? <FaSpinner className="spin-animation" /> : "Login"}
+            </button>
           </div>
         </div>
       </nav>
+      {showLogin && (
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{
+            width: isMobile ? "90vw" : "60vw",
+            height: "50vh",
+            marginTop: isMobile ? "10vh" : "19vh",
+            marginLeft: isMobile ? "5vw" : "-5vw",
+          }}
+        >
+          <Login />
+        </div>
+      )}
     </div>
   );
-}
+};
 
-export default LandingPage
+export default LandingPage;
