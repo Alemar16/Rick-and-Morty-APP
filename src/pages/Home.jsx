@@ -7,6 +7,9 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
+import "animate.css";
+
+
 const CarouselContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -50,36 +53,81 @@ const Home = () => {
   }
   
   return (
-    <div className="container-fluid" style={{ maxHeight:"100vh", overflow:"hidden", marginTop:"60px" }}>
+    <div
+      className="container-fluid"
+      style={{ maxHeight: "100vh", overflow: "hidden", marginTop: "60px" }}
+    >
       <div>
         <h1 className="text-center mt-5 mb-3 fw-bold fs-1 text-secondary">
           Rick and Morty
         </h1>
+
         <div className="d-flex justify-content-center align-items-center">
-          <i
-            className={showForm ? "bi bi-arrow-return-left" : "bi bi-search"}
-            style={{
-              fontSize: "1.5rem",
-              marginRight: "0.5rem",
-              cursor: "pointer",
-            }}
-            onClick={handleSearchClick}
-          ></i>
+  <div style={{ display: "flex", alignItems: "center" }}>
+    <div
+      style={{
+        position: "relative",
+        display: "flex",
+        alignItems: "center",
+        marginRight: "0.5rem",
+        cursor: "pointer"
+      }}
+      onClick={handleSearchClick}
+    >
+      <i
+        className={showForm ? "bi bi-arrow-return-left" : "bi bi-search"}
+        style={{
+          fontSize: "2rem",
+          color: "white"
+        }}
+      ></i>
+      {showForm ? null : <span style={{ marginLeft: "0.5rem", color: "white" }}>Click here</span>}
+    </div>
 
           <FormContainer show={showForm}>
-            <form className="d-flex justify-content-center mb-3 mt-4">
-              <input
-                className="form-control-sm me-sm-2"
-                type="search"
-                placeholder="Enter the number..."
-                size={18}
-              />
+            <form className="d-flex justify-content-center mb-3 mt-4 gap-2">
+              <div
+                style={{
+                  position: "relative",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+                class="animate__animated animate__jello"
+              >
+                <input
+                  className="form-control-sm me-sm-2 "
+                  type="search"
+                  placeholder="Enter the number..."
+                  size={18}
+                  style={{
+                    backgroundColor: "#333",
+                    color: "white",
+                    borderRadius: "8px",
+                    fontSize: "16px",
+                    padding: "8px",
+                    paddingRight: "30px",
+                    width: "100%",
+                  }}
+                />
+                <i
+                  className="fas fa-search"
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    right: "20px",
+                    transform: "translateY(-50%)",
+                    color: "white",
+                    pointerEvents: "none",
+                  }}
+                ></i>
+              </div>
               <button className="btn btn-secondary my-2 my-sm-0" type="submit">
                 Search
               </button>
             </form>
           </FormContainer>
-        </div>
+          </div>
+          </div>
       </div>
       <div className="container mt-2">
         <CarouselContainer>
