@@ -55,7 +55,7 @@ const Home = () => {
   return (
     <div
       className="container-fluid"
-      style={{ maxHeight: "100vh", overflow: "hidden", marginTop: "60px" }}
+      style={{ maxHeight: "100vh",  marginTop: "60px" }}
     >
       <div>
         <h1 className="text-center mt-5 mb-3 fw-bold fs-1 text-secondary">
