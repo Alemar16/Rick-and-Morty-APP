@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { StyleSheetManager } from "styled-components";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination } from "swiper/modules";
@@ -53,7 +54,8 @@ const Home = () => {
   }
   
   return (
-    <div
+    <StyleSheetManager shouldForwardProp={(prop) => prop !== 'show'}>
+      <div
       className="container-fluid"
       style={{ maxHeight: "100vh",  marginTop: "60px" }}
     >
@@ -92,7 +94,7 @@ const Home = () => {
                   display: "flex",
                   alignItems: "center",
                 }}
-                class="animate__animated animate__jello"
+                className="animate__animated animate__jello"
               >
                 <input
                   className="form-control-sm me-sm-2 "
@@ -159,6 +161,11 @@ const Home = () => {
         </CarouselContainer>
       </div>
     </div>
+
+    </StyleSheetManager>
+
+
+    
   );
 };
 
