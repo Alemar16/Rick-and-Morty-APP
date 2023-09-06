@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Logout from "../login/Logout";
+import ErrorBoundary from "../errorBoundary/ErrorBoundary";
 
 const Navbar = () => {
   return (
@@ -72,7 +73,11 @@ const Navbar = () => {
                 </div>
               </li>
             </ul>
-            <Logout />
+            <div>
+            <ErrorBoundary>
+              <Logout/>
+              </ErrorBoundary>
+            </div>
           </div>
         </div>
       </nav>
