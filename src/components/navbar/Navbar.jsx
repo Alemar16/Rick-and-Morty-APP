@@ -4,7 +4,7 @@ import Logout from "../login/Logout";
 const Navbar = () => {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+      <nav className="navbar navbar-expand-lg bg-dark fixed-top" style={{ zIndex: "100"}} data-bs-theme="dark">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
             Navbar
@@ -72,16 +72,6 @@ const Navbar = () => {
                 </div>
               </li>
             </ul>
-            <form className="d-flex">
-              <input
-                className="form-control me-sm-2"
-                type="search"
-                placeholder="Search"
-              />
-              <button className="btn btn-secondary my-2 my-sm-0" type="submit">
-                Search
-              </button>
-            </form>
             <Logout />
           </div>
         </div>

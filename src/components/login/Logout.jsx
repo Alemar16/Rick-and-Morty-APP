@@ -16,7 +16,7 @@ export const Logout = () => {
   };
 
   return (
-    <div className="">
+    <div className=" row">
       <h6 className="text-secondary col ">Welcome {user.displayName}</h6>
       <button className="btn btn-secondary col " onClick={cerrarSesion}>
         Logout
