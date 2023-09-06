@@ -10,6 +10,8 @@ import "swiper/css/pagination";
 
 import "animate.css";
 
+import "../assets/fontStyle/font.css";
+
 
 const CarouselContainer = styled.div`
   display: flex;
@@ -53,119 +55,129 @@ const Home = () => {
     setShowForm(!showForm);
   }
   
+  const Title = styled.h1`
+    font-family: "Get Schwifty", sans-serif;
+    font-size: 6rem;
+    
+  `;
   return (
-    <StyleSheetManager shouldForwardProp={(prop) => prop !== 'show'}>
+    <StyleSheetManager shouldForwardProp={(prop) => prop !== "show"}>
       <div
-      className="container-fluid"
-      style={{ maxHeight: "100vh",  marginTop: "60px" }}
-    >
-      <div>
-        <h1 className="text-center mt-5 mb-3 fw-bold fs-1 text-secondary">
-          Rick and Morty
-        </h1>
+        className="container-fluid"
+        style={{ maxHeight: "100vh", marginTop: "100px" }}
+      >
+        <div>
+          <Title className="text-center mb-2 text-secondary">
+            Rick and Morty
+          </Title>
 
-        <div className="d-flex justify-content-center align-items-center">
-  <div style={{ display: "flex", alignItems: "center" }}>
-    <div
-      style={{
-        position: "relative",
-        display: "flex",
-        alignItems: "center",
-        marginRight: "0.5rem",
-        cursor: "pointer"
-      }}
-      onClick={handleSearchClick}
-    >
-      <i
-        className={showForm ? "bi bi-arrow-return-left" : "bi bi-search"}
-        style={{
-          fontSize: "2rem",
-          color: "white"
-        }}
-      ></i>
-      {showForm ? null : <span style={{ marginLeft: "0.5rem", color: "white" }}>Click here</span>}
-    </div>
-
-          <FormContainer show={showForm}>
-            <form className="d-flex justify-content-center mb-3 mt-4 gap-2">
+          <div className="d-flex justify-content-center align-items-center">
+            <div style={{ display: "flex", alignItems: "center" }}>
               <div
                 style={{
                   position: "relative",
                   display: "flex",
                   alignItems: "center",
+                  marginRight: "0.5rem",
+                  cursor: "pointer",
                 }}
-                className="animate__animated animate__jello"
+                onClick={handleSearchClick}
               >
-                <input
-                  className="form-control-sm me-sm-2 "
-                  type="search"
-                  placeholder="Enter the number..."
-                  size={18}
-                  style={{
-                    backgroundColor: "#333",
-                    color: "white",
-                    borderRadius: "8px",
-                    fontSize: "16px",
-                    padding: "8px",
-                    paddingRight: "30px",
-                    width: "100%",
-                  }}
-                />
                 <i
-                  className="fas fa-search"
+                  className={
+                    showForm ? "bi bi-arrow-return-left" : "bi bi-search"
+                  }
                   style={{
-                    position: "absolute",
-                    top: "50%",
-                    right: "20px",
-                    transform: "translateY(-50%)",
+                    fontSize: "2rem",
                     color: "white",
-                    pointerEvents: "none",
                   }}
                 ></i>
+                {showForm ? null : (
+                  <span style={{ marginLeft: "0.5rem", color: "white" }}>
+                    Click here
+                  </span>
+                )}
               </div>
-              <button className="btn btn-secondary my-2 my-sm-0" type="submit">
-                Search
-              </button>
-            </form>
-          </FormContainer>
-          </div>
-          </div>
-      </div>
-      <div className="container mt-2">
-        <CarouselContainer>
-          <Swiper
-            centeredSlides={true}
-            pagination={true}
-            effect={"coverflow"}
-            grabCursor={true}
-            slidesPerView={"auto"}
-            mousewheel={true}
-            coverflowEffect={{
-              rotate: 50,
-              stretch: 0,
-              depth: 100,
-              modifier: 1,
-              slideShadows: true,
-            }}
-            modules={[EffectCoverflow, Pagination]}
-          >
-            <div>
-              {slides.map((slide, index) => (
-                <SwiperSlide
-                  key={index}
-                  style={{ backgroundImage: `url(${slide})` }}
-                ></SwiperSlide>
-              ))}
+
+              <FormContainer show={showForm}>
+                <form className="d-flex justify-content-center mb-3 mt-4 gap-2">
+                  <div
+                    style={{
+                      position: "relative",
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                    className="animate__animated animate__jello"
+                  >
+                    <input
+                      className="form-control-sm me-sm-2 "
+                      type="search"
+                      placeholder="Enter the number..."
+                      size={18}
+                      style={{
+                        backgroundColor: "#333",
+                        color: "white",
+                        borderRadius: "8px",
+                        fontSize: "16px",
+                        padding: "8px",
+                        paddingRight: "30px",
+                        width: "100%",
+                      }}
+                    />
+                    <i
+                      className="fas fa-search"
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        right: "20px",
+                        transform: "translateY(-50%)",
+                        color: "white",
+                        pointerEvents: "none",
+                      }}
+                    ></i>
+                  </div>
+                  <button
+                    className="btn btn-secondary my-2 my-sm-0"
+                    type="submit"
+                  >
+                    Search
+                  </button>
+                </form>
+              </FormContainer>
             </div>
-          </Swiper>
-        </CarouselContainer>
+          </div>
+        </div>
+        <div className="container mt-2">
+          <CarouselContainer>
+            <Swiper
+              centeredSlides={true}
+              pagination={true}
+              effect={"coverflow"}
+              grabCursor={true}
+              slidesPerView={"auto"}
+              mousewheel={true}
+              coverflowEffect={{
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+              }}
+              modules={[EffectCoverflow, Pagination]}
+            >
+              <div>
+                {slides.map((slide, index) => (
+                  <SwiperSlide
+                    key={index}
+                    style={{ backgroundImage: `url(${slide})` }}
+                  ></SwiperSlide>
+                ))}
+              </div>
+            </Swiper>
+          </CarouselContainer>
+        </div>
       </div>
-    </div>
-
     </StyleSheetManager>
-
-
-    
   );
 };
 
