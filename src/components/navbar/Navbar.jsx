@@ -1,14 +1,20 @@
 import { Link } from "react-router-dom";
 import Logout from "../login/Logout";
+import ErrorBoundary from "../errorBoundary/ErrorBoundary";
+import logo from '../../assets/images/logo.svg';
 
 const Navbar = () => {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg bg-dark fixed-top" style={{ zIndex: "100"}} data-bs-theme="dark">
+      <nav
+        className="navbar navbar-expand-lg bg-dark fixed-top"
+        style={{ zIndex: "100" }}
+        data-bs-theme="dark"
+      >
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
-            Navbar
-          </a>
+          <Link className="navbar-brand" to="/home">
+            <img src={logo} alt="logo" className="img-fluid rounded " style={{ width: "70px", height: "70px", marginRight: "10px", marginTop: "-10px",marginBottom: "-10px", padding: "0px", borderRadius: "50px" }}/>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -23,20 +29,20 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarColor02">
             <ul className="navbar-nav me-auto">
               <li className="nav-item">
-                <a className="nav-link active" href="./home">
+                <Link className="nav-link active" to="/home">
                   Home
                   <span className="visually-hidden">(current)</span>
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="./favorites">
+                <Link className="nav-link" to="/favorites">
                   Favorites
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="./synopsis">
+                <Link className="nav-link" to="/synopsis">
                   Synopsis
-                </a>
+                </Link>
               </li>
 
               <li className="nav-item dropdown">
@@ -51,28 +57,32 @@ const Navbar = () => {
                   Project
                 </a>
                 <div className="dropdown-menu">
-                  <Link
+                  <a
                     className="dropdown-item"
-                    to="https://rickandmortyapi.com/"
+                    href="https://rickandmortyapi.com/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     Rick and Morty API
-                  </Link>
-                  <a className="dropdown-item" href="./henry_m2">
+                  </a>
+                  <Link className="dropdown-item" to="/henry_m2">
                     Henrry Module 2 Instructions
-                  </a>
-                  <a className="dropdown-item" href="./tecnologies">
+                  </Link>
+                  <Link className="dropdown-item" to="/technologies">
                     Applied technologies
-                  </a>
+                  </Link>
                   <div className="dropdown-divider"></div>
-                  <a className="dropdown-item" href="./about">
+                  <Link className="dropdown-item" to="/about">
                     About
-                  </a>
+                  </Link>
                 </div>
               </li>
             </ul>
-            <Logout />
+            <div>
+              <ErrorBoundary>
+                <Logout />
+              </ErrorBoundary>
+            </div>
           </div>
         </div>
       </nav>

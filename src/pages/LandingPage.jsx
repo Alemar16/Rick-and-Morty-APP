@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import Login from "../pages/Login";
-import image from "../assets/landindImagen.png";
+import image from "../assets/images/landindImagen.png";
 import { FaSpinner } from "react-icons/fa";
 import { useMediaQuery } from "react-responsive";
 

@@ -12,6 +12,7 @@ import Tecnologies from "../pages/Tecnologies";
 import About from "../pages/About";
 import Error404 from "../pages/Error404";
 import { UserAuth } from "../context/AuthContext";
+import Login2 from "../pages/Login2";
 
 export const MyRoutes = () => {
   const { user } = UserAuth();
@@ -23,7 +24,7 @@ export const MyRoutes = () => {
       {user ? <Navbar /> : null}
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/login" element={<Login2 />} /> 
 
         <Route
           path="/home"
