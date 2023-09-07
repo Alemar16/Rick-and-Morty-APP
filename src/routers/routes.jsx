@@ -12,7 +12,7 @@ import Tecnologies from "../pages/Tecnologies";
 import About from "../pages/About";
 import Error404 from "../pages/Error404";
 import { UserAuth } from "../context/AuthContext";
-import Login2 from "../components/login/Login2";
+import Login2 from "../pages/Login2";
 
 export const MyRoutes = () => {
   const { user } = UserAuth();

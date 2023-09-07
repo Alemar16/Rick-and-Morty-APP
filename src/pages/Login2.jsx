@@ -1,7 +1,7 @@
 import { useState } from "react";
-import facebookIcon from "../../assets/socialIcons/facebook_icon.svg";
-import googleIcon from "../../assets/socialIcons/google_icon.svg";
-import githubIcon from "../../assets/socialIcons/github_icon.svg";
+import facebookIcon from "../assets/socialIcons/facebook_icon.svg";
+import googleIcon from "../assets/socialIcons/google_icon.svg";
+import githubIcon from "../assets/socialIcons/github_icon.svg";
 
 const Login2 = () => {
   //para intercambiar entre los componentes login y register
