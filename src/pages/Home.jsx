@@ -12,7 +12,6 @@ import "animate.css";
 
 import "../assets/fontStyle/font.css";
 
-
 const CarouselContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -46,20 +45,19 @@ const slides = [
 ];
 
 const FormContainer = styled.div`
-  display: ${props => (props.show ? "block" : "none")};`
-
+  display: ${(props) => (props.show ? "block" : "none")};
+`;
+const Title = styled.h1`
+  font-family: "Get Schwifty", sans-serif;
+  font-size: 6rem;
+`;
 const Home = () => {
   const [showForm, setShowForm] = useState(false);
 
   const handleSearchClick = () => {
     setShowForm(!showForm);
-  }
-  
-  const Title = styled.h1`
-    font-family: "Get Schwifty", sans-serif;
-    font-size: 6rem;
-    
-  `;
+  };
+
   return (
     <StyleSheetManager shouldForwardProp={(prop) => prop !== "show"}>
       <div
@@ -67,9 +65,11 @@ const Home = () => {
         style={{ maxHeight: "100vh", marginTop: "100px" }}
       >
         <div>
-          <Title className="text-center mb-2 text-secondary">
-            Rick and Morty
-          </Title>
+          
+            <Title className="text-center mb-2 text-secondary">
+              Rick and Morty
+            </Title>
+          
 
           <div className="d-flex justify-content-center align-items-center">
             <div style={{ display: "flex", alignItems: "center" }}>
