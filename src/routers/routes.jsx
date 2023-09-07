@@ -1,3 +1,4 @@
+import propTypes from "prop-types";
 import { Routes, Route, Navigate } from "react-router-dom";
 import PrivateRoutes from "./PrivateRoutes";
 // pages
@@ -13,12 +14,16 @@ import About from "../pages/About";
 import Error404 from "../pages/Error404";
 import { UserAuth } from "../context/AuthContext";
 import Login2 from "../pages/Login2";
-
+const RequireAuth = ({ children }) => {
+  const { user } = UserAuth();
+    return user ? children : <Navigate to="/login" />;
+};
+  RequireAuth.propTypes = {
+    children: propTypes.node.isRequired,
+  };
 export const MyRoutes = () => {
   const { user } = UserAuth();
-  const RequireAuth = ({ children }) => {
-    return user ? children : <Navigate to="/login" />;
-  };
+  
   return (
     <>
       {user ? <Navbar /> : null}

@@ -1,4 +1,4 @@
-import React from "react";
+import propTypes from "prop-types";
 import { UserAuth } from "../context/AuthContext";
 import { Navigate } from "react-router-dom";
 
@@ -9,5 +9,7 @@ const PrivateRoutes = ({ children }) => {
   }
   return children;
 };
-
+PrivateRoutes.propTypes = {
+  children: propTypes.node.isRequired
+}
 export default PrivateRoutes;
