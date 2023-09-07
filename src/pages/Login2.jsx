@@ -220,7 +220,7 @@ const Login2 = () => {
           <form onSubmit={handleFormSubmit}>
             <div className="text-center mb-3 mt-3">
               <p>
-                "Ready to get started? Sign up now!"
+                Ready to get started? Sign up now..!
               </p>
             </div>
 
