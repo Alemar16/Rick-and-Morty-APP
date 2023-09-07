@@ -20,6 +20,12 @@ const Login2 = () => {
     }
   }
 
+  //para validar checbox de remember me 
+  const [rememberMe, setRememberMe] = useState(false);
+  const handleCheckboxChangeRememberMe = (event) => {
+    setRememberMe(event.target.checked);
+  }
+
   
 
   return (
@@ -129,7 +135,8 @@ const Login2 = () => {
                     type="checkbox"
                     value=""
                     id="loginCheck"
-                    checked
+                    checked={rememberMe}
+                    onChange={handleCheckboxChangeRememberMe}
                   />
                   <label className="form-check-label" htmlFor="loginCheck">
                     Remember me
