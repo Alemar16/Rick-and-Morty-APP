@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Logout from "../login/Logout";
 import ErrorBoundary from "../errorBoundary/ErrorBoundary";
-import logo from '../../assets/logo.svg'
+import logo from '../../assets/images/logo.svg';
 
 const Navbar = () => {
   return (
