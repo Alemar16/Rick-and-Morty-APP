@@ -1,8 +1,17 @@
-import  { useState } from "react";
+import { useState } from "react";
 import Login from "../pages/Login";
 import image from "../assets/images/landindImagen.png";
 import { FaSpinner } from "react-icons/fa";
 import { useMediaQuery } from "react-responsive";
+import logo from "../assets/images/logo.svg";
+import styled from "styled-components";
+import "../assets/fontStyle/font.css";
+
+const Title = styled.h1`
+  font-family: "Get Schwifty", sans-serif;
+  font-size: 2rem;
+  margin: 0px;
+`;
 
 const LandingPage = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -32,9 +41,24 @@ const LandingPage = () => {
     >
       <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
         <div className="container-fluid">
-          <a className="navbar-brand" href="./">
-            RICK AND MORTY
-          </a>
+          <div className="navbar-brand row" to="/home">
+            <img
+              src={logo}
+              alt="logo de Rick and Morty"
+              className="img-fluid rounded col "
+              style={{
+                width: "60px",
+                height: "60px",
+                marginRight: "10px",
+                marginTop: "-10px",
+                marginBottom: "-10px",
+                paddingRight: "0px",
+                borderRadius: "50px",
+              }}
+            />
+            <Title className=" text-primary col">Rick and Morty</Title>
+          </div>
+
           <button
             className="navbar-toggler"
             type="button"
@@ -50,15 +74,15 @@ const LandingPage = () => {
             className="collapse navbar-collapse flex-grow-0"
             id="navbarColor02"
           >
-            <button className="btn btn-transparent d-flex justify-content-center">
+            <button className="btn btn-transparent d-flex justify-content-center text-primary">
               Instructions
             </button>
             <button
               onClick={handleShowLogin}
-              className="btn btn-secondary d-flex justify-content-center"
+              className="btn btn-primary d-flex justify-content-center"
               disabled={isLoading}
             >
-              {isLoading ? <FaSpinner className="spin-animation"  /> : "Login"}
+              {isLoading ? <FaSpinner className="spin-animation" /> : "Login"}
             </button>
           </div>
         </div>
