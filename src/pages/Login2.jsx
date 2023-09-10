@@ -1,9 +1,76 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import facebookIcon from "../assets/socialIcons/facebook_icon.svg";
 import googleIcon from "../assets/socialIcons/google_icon.svg";
 import githubIcon from "../assets/socialIcons/github_icon.svg";
+import { UserAuth } from "../context/AuthContext";
 
 const Login2 = () => {
+  //para autentizar con Google
+  const { user, googleSignIn } = UserAuth();
+  const navigate = useNavigate();
+  const iniciarSesion = async () => {
+    try {
+      await googleSignIn();
+      console.log("Usuario a iniciado en su cuenta en Google");
+    } catch (error) {
+      console.log(
+        "Error al iniciar seccion en la cunta de google desde login",
+        error
+      );
+    }
+  };
+  //para iniciar sesion con email y password
+  const { signInWithEmail, signUpWithEmail } = UserAuth();
+  //estado para almacenar datos del formulario
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [error, setError] = useState("");
+  //funcion para manejar cambios en los campos del formulario
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+  //funcion para manejar el inicio de seccion con email y password
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      const { email, password } = formData;
+      await signInWithEmail(email, password);
+      console.log('Usuario a iniciado en su cuenta');
+      // Redirige al usuario a la página de inicio después del inicio de sesión exitoso
+      navigate("/home");
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+      setError("Error al iniciar sesión. Verifica tus credenciales.");
+    }
+  };
+  // Función para manejar el registro con email y contraseña
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    try {
+      const { email, password } = formData;
+      await signUpWithEmail(email, password);
+      console.log('Usuario a creado su cuenta');
+      // Redirige al usuario a la página de inicio después del registro exitoso
+      navigate("/home");
+    } catch (error) {
+      console.error("Error al registrar usuario:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (user != null) {
+      console.log(user);
+      navigate("/home");
+    }
+  }, [user, navigate]);
+  //=============================================
   //para intercambiar entre los componentes login y register
   const [activeTab, setActiveTab] = useState("login");
   const handleTabClick = (tab) => {
@@ -35,23 +102,22 @@ const Login2 = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
-  }
+  };
   const handleRepeatPasswordChange = (event) => {
     setRepeatPassword(event.target.value);
-  }
+  };
   const validatePasswords = () => {
     if (password === repeatPassword) {
       // Las contraseñas coinciden, realizar el registro
       alert("Success registration");
+      return true;
       // Aquí puedes agregar la lógica para enviar los datos del formulario o realizar otras acciones necesarias
     } else {
       // Las contraseñas no coinciden, mostrar un mensaje de error
-      setErrorMessage(
-        "Passwords do not match. Please try again."
-      );
+      setErrorMessage("Passwords do not match. Please try again.");
+      return false;
     }
   };
-
 
   return (
     <div
@@ -66,8 +132,12 @@ const Login2 = () => {
       }}
     >
       {/* Pills navs */}
-      <ul className="nav nav-pills nav-justified mb-3 mt-3 " id="ex1" role="tablist">
-        {/* Login */}
+      <ul
+        className="nav nav-pills nav-justified mb-3 mt-3 "
+        id="ex1"
+        role="tablist"
+      >
+        {/* Boton de Login */}
         <li className="nav-item " role="presentation">
           <a
             className={`nav-link ${activeTab === "login" ? "active" : ""}`}
@@ -82,7 +152,7 @@ const Login2 = () => {
             Login
           </a>
         </li>
-        {/* Register */}
+        {/*Boton de Register */}
         <li className="nav-item" role="presentation">
           <a
             className={`nav-link ${activeTab === "register" ? "active" : ""}`}
@@ -127,7 +197,11 @@ const Login2 = () => {
                 />
               </button>
               {/* Google */}
-              <button className="btn btn-dark btn-floating mx-2" title="Google">
+              <button
+                className="btn btn-dark btn-floating mx-2"
+                title="Google"
+                onClick={iniciarSesion}
+              >
                 <img src={googleIcon} alt="Google" style={{ width: "35px" }} />
               </button>
               {/* Github */}
@@ -149,6 +223,9 @@ const Login2 = () => {
                 placeholder="Email"
                 aria-label="Username"
                 aria-describedby="addon-wrapping"
+                name="email" // Nombre del campo
+                value={formData.email} // Valor del campo desde el estado
+                onChange={handleInputChange} // Función para manejar cambios
               />
             </div>
 
@@ -163,6 +240,9 @@ const Login2 = () => {
                 placeholder="Password"
                 aria-label="Password"
                 aria-describedby="addon-wrapping"
+                name="password" // Nombre del campo
+                value={formData.password} // Valor del campo desde el estado
+                onChange={handleInputChange} // Función para manejar cambios
               />
             </div>
 
@@ -197,6 +277,7 @@ const Login2 = () => {
                 type="submit"
                 className="btn btn-primary btn-block "
                 style={{ margin: "0 auto" }}
+                onClick={handleSignIn}
               >
                 Sign in
               </button>
@@ -219,9 +300,7 @@ const Login2 = () => {
         >
           <form onSubmit={handleFormSubmit}>
             <div className="text-center mb-3 mt-3">
-              <p>
-                Ready to get started? Sign up now..!
-              </p>
+              <p>Ready to get started? Sign up now..!</p>
             </div>
 
             {/* identification Name input and Username input */}
@@ -236,6 +315,9 @@ const Login2 = () => {
                 placeholder="Name"
                 aria-label="Username"
                 aria-describedby="addon-wrapping"
+                name="name" // Nombre del campo
+                value={formData.name} // Valor del campo desde el estado
+                onChange={handleInputChange} // Función para manejar cambios
               />
             </div>
 
@@ -250,11 +332,10 @@ const Login2 = () => {
                 placeholder="Email"
                 aria-label="Username"
                 aria-describedby="addon-wrapping"
+                name="email" // Nombre del campo
+                value={formData.email} // Valor del campo desde el estado
+                onChange={handleInputChange} // Función para manejar cambios
               />
-
-
-
-
             </div>
             {/* Password input */}
             <div className="input-group flex-nowrap mb-2">
@@ -287,11 +368,6 @@ const Login2 = () => {
               />
             </div>
 
-
-
-            
-
-
             {/* Checkbox */}
             <div className="form-check d-flex justify-content-center mb-4">
               <input
@@ -308,15 +384,23 @@ const Login2 = () => {
               </label>
             </div>
             {/* Submit button */}
-            {errorMessage && 
-              <p>{errorMessage}</p>
-            }
+            {errorMessage && <p>{errorMessage}</p>}
             <div className="text-center">
               <button
                 type="submit"
-                className="btn btn-primary btn-block "
+                className="btn btn-primary btn-block"
                 style={{ margin: "0 auto" }}
-                onClick={validatePasswords}
+                onClick={(e) => {
+                  if(!isChecked){
+                    alert("Debe aceptar los términos y condiciones");
+                    return;
+                  }
+                  e.preventDefault();
+                  if (validatePasswords()) {
+                    // Llama a la primera función para validar si es true o false
+                    handleSignUp(e); // Llama a la segunda función para validar el registro
+                  }
+                }}
               >
                 Sign in
               </button>
@@ -335,11 +419,9 @@ const Login2 = () => {
 
 export default Login2;
 
-
-
 //  <div className="row mb-4">
 //    <div className="col">
-   
+
 //      <div className="input-group flex-nowrap mb-1 me-1">
 //        <span className="input-group-text" id="addon-wrapping">
 //          <i class="fa-solid fa-user-large"></i>
@@ -354,7 +436,7 @@ export default Login2;
 //      </div>
 //    </div>
 //    <div className="col">
-   
+
 //      <div className="input-group flex-nowrap mb-1">
 //        <span className="input-group-text" id="addon-wrapping">
 //          <i class="fa-solid fa-user-ninja"></i>
@@ -597,25 +679,25 @@ export default Login2;
 
 //             <p className="text-center">or:</p>
 
-            // {/* Name input */}
-            // {/* <div className="form-outline mb-4">
-            //   <input type="text" id="registerName" className="form-control" />
-            //   <label className="form-label" htmlFor="registerName">
-            //     Name
-            //   </label>
-            // </div> */}
+// {/* Name input */}
+// {/* <div className="form-outline mb-4">
+//   <input type="text" id="registerName" className="form-control" />
+//   <label className="form-label" htmlFor="registerName">
+//     Name
+//   </label>
+// </div> */}
 
-            // {/* Username input */}
-            // {/* <div className="form-outline mb-4">
-            //   <input
-            //     type="text"
-            //     id="registerUsername"
-            //     className="form-control"
-            //   />
-            //   <label className="form-label" htmlFor="registerUsername">
-            //     Username
-            //   </label>
-            // </div> */}
+// {/* Username input */}
+// {/* <div className="form-outline mb-4">
+//   <input
+//     type="text"
+//     id="registerUsername"
+//     className="form-control"
+//   />
+//   <label className="form-label" htmlFor="registerUsername">
+//     Username
+//   </label>
+// </div> */}
 
 //             {/* Email input */}
 //             <div className="input-group flex-nowrap mb-4">
