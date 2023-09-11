@@ -3,26 +3,29 @@ import PropTypes from "prop-types";
 import {
   GoogleAuthProvider,
   signInWithPopup,
-  // signInWithRedirect,
   onAuthStateChanged,
   signOut,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile, // Asegúrate de importar updateProfile desde firebase/auth
 } from "firebase/auth";
 import { auth } from "../components/firebase/firebase.js";
 
 const AuthContext = createContext();
+
 export const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null); // Cambia el valor inicial a null
+
   const googleSignIn = async () => {
     try {
       const provider = new GoogleAuthProvider();
-      signInWithPopup(auth, provider);
+      const credentials = await signInWithPopup(auth, provider);
+      console.log(credentials)
     } catch (error) {
-      console.log("Error al iniciar sesión en Google", error);
-      // Manejar el error
+      console.log("Error al iniciar sesión en Google", error);
     }
   };
+
   const signInWithEmail = async (email, password) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
@@ -30,25 +33,39 @@ export const AuthContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-  const signUpWithEmail = async (email, password) => {
+
+  const signUpWithEmail = async (email, password, name) => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      // Actualiza el perfil del usuario con el nombre
+      await updateProfile(userCredential.user, { displayName: name });
+
+      setUser(userCredential.user); // Establece el usuario en el contexto
     } catch (error) {
       console.log(error);
     }
   };
+
   const logout = () => {
     signOut(auth);
+    setUser(null); // Asegúrate de limpiar el usuario al cerrar sesión
   };
-  //se usa el useEffect para que se ejecute cada vez que se renderiza el componente
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      console.log("Información del usuario actualizada:", currentUser);
     });
+
     return () => {
       unsubscribe();
     };
-  }, []); // en este caso solo se ejecuta una vez
+  }, []);
 
   return (
     <AuthContext.Provider
@@ -59,10 +76,10 @@ export const AuthContextProvider = ({ children }) => {
   );
 };
 
-//Retorna el contexto
 export const UserAuth = () => {
   return useContext(AuthContext);
 };
+
 AuthContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
