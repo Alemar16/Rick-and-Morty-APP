@@ -18,6 +18,16 @@ const Login2 = () => {
       console.error("Error al iniciar sesión en Google", error);
     }
   };
+  const {facebookSignIn} = UserAuth();
+  const handleFacebookSignIn = async (e) => {
+    e.preventDefault(); 
+    try {
+      await facebookSignIn();
+      console.log("Usuario a iniciado en su cuenta en Facebook");
+    } catch (error) {
+      console.error("Error al iniciar sesión en Facebook", error);
+    }
+  };
 
   //para iniciar sesion con email y password
   const { signInWithEmail, signUpWithEmail } = UserAuth();
@@ -193,6 +203,7 @@ const Login2 = () => {
               <button
                 className="btn btn-dark btn-floating mx-2"
                 title="Facebook"
+                onClick={handleFacebookSignIn}
               >
                 <img
                   src={facebookIcon}
