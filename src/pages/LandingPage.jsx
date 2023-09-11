@@ -2,7 +2,7 @@ import { useState } from "react";
 import Login2 from "../pages/Login2";
 import image from "../assets/images/landindImagen.png";
 import { FaSpinner } from "react-icons/fa";
-import { useMediaQuery } from "react-responsive";
+/* import { useMediaQuery } from "react-responsive"; */
 import logo from "../assets/images/logo.svg";
 import styled from "styled-components";
 import "../assets/fontStyle/font.css";
@@ -16,8 +16,8 @@ const Title = styled.h1`
 const LandingPage = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isSignIn, setIsSignIn] = useState(false);
-  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+  /* const [isSignIn, setIsSignIn] = useState(false);
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" }); */
 
   const handleShowLogin = () => {
     setShowLogin(true);

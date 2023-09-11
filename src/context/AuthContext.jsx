@@ -7,7 +7,8 @@ import {
   signOut,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  updateProfile, // Asegúrate de importar updateProfile desde firebase/auth
+  updateProfile, 
+  FacebookAuthProvider,
 } from "firebase/auth";
 import { auth } from "../components/firebase/firebase.js";
 
@@ -51,6 +52,16 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
+  const facebookSignIn = async () => {
+    try {
+      const provider = new FacebookAuthProvider();
+      const credentials = await signInWithPopup(auth, provider);
+      console.log(credentials)
+    } catch (error) {
+      console.log("Error al iniciar sesión en Facebook", error);
+    }
+  }
+
   const logout = () => {
     signOut(auth);
     setUser(null); // Asegúrate de limpiar el usuario al cerrar sesión
@@ -69,7 +80,7 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, googleSignIn, logout, signInWithEmail, signUpWithEmail }}
+      value={{ user, googleSignIn,facebookSignIn, logout, signInWithEmail, signUpWithEmail }}
     >
       {children}
     </AuthContext.Provider>
