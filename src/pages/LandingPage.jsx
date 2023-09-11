@@ -102,13 +102,13 @@ const LandingPage = () => {
         >
           <div
             className="d-flex justify-content-center align-items-center"
-            style={{
+           /*  style={{
               width: isMobile ? "90vw" : "60vw",
               height: "50vh",
               marginTop: isMobile ? "10vh" : "19vh",
               marginLeft: isMobile ? "5vw" : "-5vw",
               backgroundColor: "rgba(0, 0, 0, 0.5)",
-            }}
+            }} */
           >
             <Login2 />
           </div>
