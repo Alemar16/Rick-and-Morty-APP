@@ -18,6 +18,7 @@ const Login2 = () => {
       console.error("Error al iniciar sesión en Google", error);
     }
   };
+  //para autentificar con Facebook
   const {facebookSignIn} = UserAuth();
   const handleFacebookSignIn = async (e) => {
     e.preventDefault(); 
@@ -28,6 +29,17 @@ const Login2 = () => {
       console.error("Error al iniciar sesión en Facebook", error);
     }
   };
+  //para autentificar con Github
+  const { githubSignIn } = UserAuth();
+  const handleGithubSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      await githubSignIn();
+      console.log("Usuario a iniciado en su cuenta en Github");
+    } catch (error) {
+      console.error("Error al iniciar sesión en Github", error);
+    }
+  }
 
   //para iniciar sesion con email y password
   const { signInWithEmail, signUpWithEmail } = UserAuth();
@@ -220,7 +232,7 @@ const Login2 = () => {
                 <img src={googleIcon} alt="Google" style={{ width: "35px" }} />
               </button>
               {/* Github */}
-              <button className="btn btn-dark btn-floating mx-2" title="Github">
+              <button className="btn btn-dark btn-floating mx-2" title="Github" onClick={handleGithubSignIn}>
                 <img src={githubIcon} alt="Github" style={{ width: "35px" }} />
               </button>
             </div>

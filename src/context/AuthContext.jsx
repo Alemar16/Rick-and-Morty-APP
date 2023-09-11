@@ -9,6 +9,7 @@ import {
   signInWithEmailAndPassword,
   updateProfile, 
   FacebookAuthProvider,
+  GithubAuthProvider,
 } from "firebase/auth";
 import { auth } from "../components/firebase/firebase.js";
 
@@ -61,6 +62,15 @@ export const AuthContextProvider = ({ children }) => {
       console.log("Error al iniciar sesión en Facebook", error);
     }
   }
+  const githubSignIn = async () => {
+    try {
+      const provider = new GithubAuthProvider();
+      const credentials = await signInWithPopup(auth, provider);
+      console.log(credentials)
+    } catch (error) {
+      console.log("Error al iniciar sesión en Github", error);
+    }
+  }
 
   const logout = () => {
     signOut(auth);
@@ -80,7 +90,7 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, googleSignIn,facebookSignIn, logout, signInWithEmail, signUpWithEmail }}
+      value={{ user, googleSignIn,facebookSignIn, logout, signInWithEmail, signUpWithEmail, githubSignIn }}
     >
       {children}
     </AuthContext.Provider>
