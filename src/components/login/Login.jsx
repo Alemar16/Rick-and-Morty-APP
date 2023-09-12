@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import facebookIcon from "../assets/socialIcons/facebook_icon.svg";
-import googleIcon from "../assets/socialIcons/google_icon.svg";
-import githubIcon from "../assets/socialIcons/github_icon.svg";
-import { UserAuth } from "../context/AuthContext";
+import facebookIcon from "../../assets/socialIcons/facebook_icon.svg";
+import googleIcon from "../../assets/socialIcons/google_icon.svg";
+import githubIcon from "../../assets/socialIcons/github_icon.svg";
+import { UserAuth } from "../../context/AuthContext";
+import PropTypes from "prop-types";
 
-const Login2 = () => {
+const Login = ({handleCloseLogin}) => {
   //para autentizar con Google
   const { user, googleSignIn } = UserAuth();
   const navigate = useNavigate();
@@ -19,9 +20,9 @@ const Login2 = () => {
     }
   };
   //para autentificar con Facebook
-  const {facebookSignIn} = UserAuth();
+  const { facebookSignIn } = UserAuth();
   const handleFacebookSignIn = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     try {
       await facebookSignIn();
       console.log("Usuario a iniciado en su cuenta en Facebook");
@@ -39,7 +40,7 @@ const Login2 = () => {
     } catch (error) {
       console.error("Error al iniciar sesión en Github", error);
     }
-  }
+  };
 
   //para iniciar sesion con email y password
   const { signInWithEmail, signUpWithEmail } = UserAuth();
@@ -232,7 +233,11 @@ const Login2 = () => {
                 <img src={googleIcon} alt="Google" style={{ width: "35px" }} />
               </button>
               {/* Github */}
-              <button className="btn btn-dark btn-floating mx-2" title="Github" onClick={handleGithubSignIn}>
+              <button
+                className="btn btn-dark btn-floating mx-2"
+                title="Github"
+                onClick={handleGithubSignIn}
+              >
                 <img src={githubIcon} alt="Github" style={{ width: "35px" }} />
               </button>
             </div>
@@ -309,7 +314,11 @@ const Login2 = () => {
                 Sign in
               </button>
             </div>
-            <div className="text-right y ml-auto mb-1" title="Exit">
+            <div
+              className="text-right y ml-auto mb-1"
+              title="Exit"
+              onClick={() => handleCloseLogin()}
+            >
               <i className="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
             </div>
           </form>
@@ -433,7 +442,11 @@ const Login2 = () => {
               </button>
             </div>
             {/* Exit button */}
-            <div className="text-right y ml-auto mb-1" title="Exit">
+            <div
+              className="text-right y ml-auto mb-1"
+              title="Exit"
+              onClick={() => handleCloseLogin()}
+            >
               <i className="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
             </div>
           </form>
@@ -443,5 +456,9 @@ const Login2 = () => {
     </div>
   );
 };
+// Agrega la validación de propTypes
+Login.propTypes = {
+  handleCloseLogin: PropTypes.func.isRequired, // Valida que handleCloseLogin sea una función requerida
+};
 
-export default Login2;
+export default Login;
