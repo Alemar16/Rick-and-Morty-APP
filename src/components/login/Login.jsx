@@ -245,38 +245,59 @@ const Login = ({handleCloseLogin}) => {
             <p className="text-center">or:</p>
 
             {/* Email input */}
-            <div className="input-group flex-nowrap mb-4">
-              <span className="input-group-text" id="addon-wrapping">
-                <i className="fa-solid fa-envelope"></i>
-              </span>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Email"
-                aria-label="Username"
-                aria-describedby="addon-wrapping"
-                name="email" // Nombre del campo
-                value={formData.email} // Valor del campo desde el estado
-                onChange={handleInputChange} // Función para manejar cambios
-              />
-            </div>
+            <form className="was-validated">
+              <div className="input-group flex-nowrap mb-4">
+                <span className="input-group-text" id="addon-wrapping">
+                  <i className="fa-solid fa-envelope"></i>
+                </span>
+                <input
+                  type="text"
+                  className={`form-control ${
+                    formData.email.length === 0 ? "is-invalid" : "is-valid"
+                  }`}
+                  placeholder="Email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  pattern=".+@.+\.com" // Patrón de validación, ajusta esto según tus requisitos
+                  title="This field is required."
+                />
+              </div>
 
-            {/* Password input */}
-            <div className="input-group flex-nowrap mb-4">
-              <span className="input-group-text" id="addon-wrapping">
-                <i className="fa-solid fa-key"></i>
-              </span>
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Password"
-                aria-label="Password"
-                aria-describedby="addon-wrapping"
-                name="password" // Nombre del campo
-                value={formData.password} // Valor del campo desde el estado
-                onChange={handleInputChange} // Función para manejar cambios
-              />
-            </div>
+              {/* Password input */}
+              <div className="input-group flex-nowrap mb-4">
+                <span className="input-group-text" id="addon-wrapping">
+                  <i className="fa-solid fa-key"></i>
+                </span>
+                <input
+                  type="password"
+                  className={`form-control ${
+                    formData.password.length === 0 ? "is-invalid" : "is-valid"
+                  }`}
+                  placeholder="Password"
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  required
+                  pattern=".{6,}" // Patrón de validación, por ejemplo, al menos 6 caracteres
+                  title="This field is required."
+                />
+              </div>
+              {/* Submit button */}
+              <div className="text-center">
+                <button
+                  type="submit"
+                  className="btn btn-primary btn-block "
+                  style={{ margin: "0 auto" }}
+                  onClick={handleSignIn}
+                >
+                  Sign in
+                </button>
+              </div>
+            </form>
 
             {/*  2 column grid layout*/}
             <div className="row mb-4">
@@ -303,17 +324,6 @@ const Login = ({handleCloseLogin}) => {
               </div>
             </div>
 
-            {/* Submit button */}
-            <div className="text-center">
-              <button
-                type="submit"
-                className="btn btn-primary btn-block "
-                style={{ margin: "0 auto" }}
-                onClick={handleSignIn}
-              >
-                Sign in
-              </button>
-            </div>
             <div
               className="text-right y ml-auto mb-1"
               title="Exit"
