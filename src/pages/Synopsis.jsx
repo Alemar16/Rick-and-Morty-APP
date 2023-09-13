@@ -40,7 +40,8 @@ const Synopsis = () => {
           <div className="row">
             <div className="col-md-6">
               <img
-                src="url_de_la_imagen_de_Rick"
+                src="https://th.bing.com/th/id/R.764feb0a6478735f83aa8431095fd0c8?rik=0waN%2b3wdiC24pQ&riu=http%3a%2f%2fpm1.narvii.com%2f7418%2f895d08dc1f712c19875aa5a81bba101508762c1br1-623-618v2_00.jpg&ehk=g4cRLrUaxMI9%2fBG9eeDm5cF7tzrRCmKddJh5RlqdoVU%3d&risl=&pid=ImgRaw&r=0"
+                style={{ width: "50%" }}
                 alt="Imagen de Rick"
                 className="img-fluid"
               />
@@ -52,7 +53,8 @@ const Synopsis = () => {
             </div>
             <div className="col-md-6">
               <img
-                src="url_de_la_imagen_de_Morty"
+                src="https://vignette.wikia.nocookie.net/rickandmorty/images/c/c3/Morty_Smith_(dimensione_sostitutiva).png/revision/latest?cb=20170711201806&path-prefix=it"
+                style={{ width: "50%" }}
                 alt="Imagen de Morty"
                 className="img-fluid"
               />
@@ -80,10 +82,10 @@ const Synopsis = () => {
 
           <h2 className="text-white">Más sobre la Serie</h2>
           <p className="text-white">
-            Rick and Morty es conocida por su humor irreverente, su
-            exploración de temas científicos y filosóficos, y su narrativa
-            multidimensional. Cada episodio es una aventura única que te
-            mantendrá entretenido y haciendo preguntas.
+            Rick and Morty es conocida por su humor irreverente, su exploración
+            de temas científicos y filosóficos, y su narrativa multidimensional.
+            Cada episodio es una aventura única que te mantendrá entretenido y
+            haciendo preguntas.
           </p>
 
           <p className="text-white">
